@@ -1,0 +1,23 @@
+main {
+  background-color: rgb(123, 123, 216);
+  width: 960px;
+}
+
+h1 {
+  color: rgb(126, 174, 216);
+}
+
+main section{
+  background-color: rgb(211, 121, 211);
+  width: max-content;
+  margin: auto;
+}
+
+section image{
+  width: max-content;
+  height: 10px;
+}
+
+main ul {
+  background-color: aliceblue;
+}
