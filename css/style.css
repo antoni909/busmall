@@ -21,3 +21,9 @@ section image{
 main ul {
   background-color: aliceblue;
 }
+
+#chart {
+  width: 90%;
+  height: 400px;
+  margin: auto;
+}
