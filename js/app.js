@@ -84,7 +84,6 @@ function clickManager(event){
     myContainer.removeEventListener('click', clickManager);
 }
 
-
 function renderMyChart(){
   let itemNames = [];
   let itemViews = [];
@@ -115,7 +114,7 @@ function renderMyChart(){
         borderWidth: 10
       }]
     },
-    responsive: false,
+    responsive: true,
     options: {
       scales: {
         yAxes: [{

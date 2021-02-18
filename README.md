@@ -9,6 +9,6 @@ I build an app with a direct and powerful purpose. It does all of the things tha
 
 ### Links and Resources and any Links you used as reference
 
-chart.js [![](https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
+[![](https://data.jsdelivr.com/v1/package/npm/chart.js/badge)](https://www.jsdelivr.com/package/npm/chart.js)
 
 ### submission PR
