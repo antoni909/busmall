@@ -4,6 +4,9 @@
 let totalClicks = 0;
 let clicksAllowed = 25;
 let allCatalogItems = [];
+let catalogueItemIndexArray = [];
+let uniqueIndexCount = 6;
+
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
@@ -48,17 +51,17 @@ function getRandomIndex() {
 function renderCatalogItems(){
   // to render instances
   // method 2: use while loop CREDIT: from TA RON
-  let catalogueItemIndexArray = [];
-  while (catalogueItemIndexArray.length < 3) {
+  while (catalogueItemIndexArray.length < uniqueIndexCount) {
     let randomNumber = getRandomIndex();
     while (!catalogueItemIndexArray.includes(randomNumber)){
+      // use push to create a flow of in from the front and out on end of catalogueItemIndexArray
       catalogueItemIndexArray.push(randomNumber);
     }
   }
 
-  let firstIndex = catalogueItemIndexArray.pop();
-  let secondIndex = catalogueItemIndexArray.pop();
-  let thirdIndex = catalogueItemIndexArray.pop();
+  let firstIndex = catalogueItemIndexArray.shift();
+  let secondIndex = catalogueItemIndexArray.shift();
+  let thirdIndex = catalogueItemIndexArray.shift();
   // allCatalogItems - array with all instances
   // allCatalogItems.src -  the relative path of random
   // allCatalogItems.title - is the 'name' of random
@@ -114,3 +117,37 @@ myContainer.addEventListener('click', clickManager);
 myButton.addEventListener('click', buttonManager);
 
 // style div to look like a button and display results
+
+
+// monday notes
+// includes(); yields t/f when dot chained to arr
+// pop() method removes the last element from an array and returns that element. This method CHANGES the length of the array
+// The push() method adds one or more elements to the end of an array and returns the new length of the arr
+// The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
+
+// the following adds 3 unique numbers
+// function getRandomNumber(){
+//   return Math.floor(Math.random() * 11);
+// }
+// getRandomNumber();
+// let uniqueNumbers = [];
+// let countOfUniqueNumbers = 3;
+// while(uniqueNumbers.length < countOfUniqueNumbers){
+//   let randomNumber = getRandomNumber();
+//   while(!uniqueNumbers.includes(getRandomNumber())){
+//   // with !, means = while false do the following code block  
+//   uniqueNumbers.push(getRandomNumber());
+//   }
+// }
+// console.log(uniqueNumbers);
+// pop or shift will remove and return value in arr
+
+// Queu Behavior is FIFO
+// to create this behavior use the above logic and unshift instead of push. This adds 3 in the front and remove 3 in the back
+
+// while(uniqueNumbers.length < countOfUniqueNumbers){
+//   let randomNumber = getRandomNumber();
+//   while(!uniqueNumbers.includes(getRandomNumber())){
+//   uniqueNumbers.unshift(getRandomNumber());
+//   }
+//}
