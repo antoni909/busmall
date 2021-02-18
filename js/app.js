@@ -1,6 +1,5 @@
 'use strict';
 
-// global vars
 let totalClicks = 0;
 let clicksAllowed = 25;
 let allCatalogItems = [];
@@ -10,10 +9,7 @@ let uniqueIndexCount = 6;
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
-
-// for eventhandler use
 let myContainer = document.querySelector('section');
-let myButton = document.querySelector('div');
 
 function CatalogItem(name, extension = 'jpg'){
   this.name = name;
@@ -22,7 +18,6 @@ function CatalogItem(name, extension = 'jpg'){
   this.clicks = 0;
   allCatalogItems.push(this);
 }
-
 new CatalogItem('bag');
 new CatalogItem('banana');
 new CatalogItem('bathroom');
@@ -49,12 +44,9 @@ function getRandomIndex() {
 }
 
 function renderCatalogItems(){
-  // to render instances
-  // method 2: use while loop CREDIT: from TA RON
   while (catalogueItemIndexArray.length < uniqueIndexCount) {
     let randomNumber = getRandomIndex();
     while (!catalogueItemIndexArray.includes(randomNumber)){
-      // use push to create a flow of in from the front and out on end of catalogueItemIndexArray
       catalogueItemIndexArray.push(randomNumber);
     }
   }
@@ -62,10 +54,6 @@ function renderCatalogItems(){
   let firstIndex = catalogueItemIndexArray.shift();
   let secondIndex = catalogueItemIndexArray.shift();
   let thirdIndex = catalogueItemIndexArray.shift();
-  // allCatalogItems - array with all instances
-  // allCatalogItems.src -  the relative path of random
-  // allCatalogItems.title - is the 'name' of random
-  // allCatalogItems[someIndex].views++ - times viewed of random
 
   imageOne.src = allCatalogItems[firstIndex].src;
   imageOne.title = allCatalogItems[firstIndex].name;
@@ -83,71 +71,63 @@ renderCatalogItems();
 
 function clickManager(event){
   totalClicks++;
-  // what click do you want to target? title?
   let catalogueItemClicked = event.target.title;
 
-  // renderCatalogItems();
   for(let i=0; i < allCatalogItems.length; i++){
-    // add click to some instance in the arr
     if(catalogueItemClicked === allCatalogItems[i].name)
       allCatalogItems[i].clicks++;
   }
   renderCatalogItems();
+  renderMyChart();
 
   if(totalClicks === clicksAllowed)
     myContainer.removeEventListener('click', clickManager);
 }
 
-function buttonManager(event){
-  if(totalClicks === clicksAllowed){
-    renderResults();
-  }
-}
 
-function renderResults(){
-  let catalogueList = document.querySelector('ul');
+function renderMyChart(){
+  let itemNames = [];
+  let itemViews = [];
+  let itemClicks = [];
+
   for(let i = 0; i < allCatalogItems.length; i++){
-    let li = document.createElement('li');
-    li.textContent = `${allCatalogItems[i].name} was viewed ${allCatalogItems[i].views} times and clicked ${allCatalogItems[i].clicks} times`;
-    catalogueList.appendChild(li);
+    itemNames.push(allCatalogItems[i].name);
+    itemViews.push(allCatalogItems[i].views);
+    itemClicks.push(allCatalogItems[i].clicks);
   }
+
+  let chartObject = {
+    type: 'bar',
+    data: {
+      labels: itemNames,
+      datasets: [{
+        label: 'Views',
+        data: itemViews,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: .5
+      },
+      {
+        label: 'Clicks',
+        data: itemClicks,
+        backgroundColor: 'rgba(105, 206, 86, 0.2)',
+        borderColor: 'rgba(255, 206, 86, 0.2)',
+        borderWidth: 10
+      }]
+    },
+    responsive: false,
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  };
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, chartObject);
 }
 
 myContainer.addEventListener('click', clickManager);
-myButton.addEventListener('click', buttonManager);
-
-// style div to look like a button and display results
-
-
-// monday notes
-// includes(); yields t/f when dot chained to arr
-// pop() method removes the last element from an array and returns that element. This method CHANGES the length of the array
-// The push() method adds one or more elements to the end of an array and returns the new length of the arr
-// The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
-
-// the following adds 3 unique numbers
-// function getRandomNumber(){
-//   return Math.floor(Math.random() * 11);
-// }
-// getRandomNumber();
-// let uniqueNumbers = [];
-// let countOfUniqueNumbers = 3;
-// while(uniqueNumbers.length < countOfUniqueNumbers){
-//   let randomNumber = getRandomNumber();
-//   while(!uniqueNumbers.includes(getRandomNumber())){
-//   // with !, means = while false do the following code block  
-//   uniqueNumbers.push(getRandomNumber());
-//   }
-// }
-// console.log(uniqueNumbers);
-// pop or shift will remove and return value in arr
-
-// Queu Behavior is FIFO
-// to create this behavior use the above logic and unshift instead of push. This adds 3 in the front and remove 3 in the back
-
-// while(uniqueNumbers.length < countOfUniqueNumbers){
-//   let randomNumber = getRandomNumber();
-//   while(!uniqueNumbers.includes(getRandomNumber())){
-//   uniqueNumbers.unshift(getRandomNumber());
-//   }
-//}
