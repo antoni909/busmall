@@ -18,6 +18,7 @@ function CatalogItem(name, extension = 'jpg'){
   this.clicks = 0;
   allCatalogItems.push(this);
 }
+
 new CatalogItem('bag');
 new CatalogItem('banana');
 new CatalogItem('bathroom');
