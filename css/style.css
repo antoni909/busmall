@@ -14,14 +14,14 @@ h1 {
   font-size: 5em;
   font-family: fantasy;
   text-align: center;
-  color: yellow;
+  color: rgb(22, 223, 223);
   font-weight: bold;
 }
 
 main{
   width: 960px;
   margin: 35px 0px;
-  margin-left: 0px;
+  margin-left: 5px;
   padding: 10px 0px;
 }
 
@@ -29,20 +29,21 @@ main{
   background-color: black;
   height: 350px;
   width: 960px;
-  margin-left: 0px;
-  margin-bottom: 35px;
+  margin: 30px 0px;
 }
 
 img {
-  background-color: black;
   width: 300px;
-  height: 350px;
-  margin-left: 10px;
-  align-items: baseline;
+  height: 340px;
+  border-width: 8px;
+  border-color: rgb(238, 115, 238);
+  border-style: groove;
+  margin-left: 1px;
 }
 
 img:hover {
   cursor: pointer;
+  transition: 350ms;
 }
 
 #chart-container{
@@ -52,9 +53,13 @@ img:hover {
   border-color: yellow;
 }
 
-
 #myChart {
   padding: 50px;
   height: 300px;
   width: 900px;
+}
+
+#myChart:hover{
+  cursor: crosshair;
+  transition: 350ms;
 }
