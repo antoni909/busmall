@@ -155,8 +155,8 @@ myContainer.addEventListener('click', clickManager);
 // localStorage saves to computer C drive
 
 // Store:
-//  data object -> json.stringify -> to
-//  localStorage
+//  data object -> json.stringify -> to localStorage
+
 // Retrieve
 //  localStorage -> json.parse -> usable data
 
@@ -186,3 +186,4 @@ myContainer.addEventListener('click', clickManager);
 
 // let parsedData = JSON.parse(retrievedData);
 // it strips away its connection to constructor funciton and is "seen" as set of individual object litirals. This causes prototype methods to break. To fix, redesign constructor to reassign modified data
+

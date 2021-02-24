@@ -63,3 +63,40 @@ img:hover {
   cursor: crosshair;
   transition: 350ms;
 }
+
+
+
+ .box {
+  background: #2db34a;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 95px;
+  line-height: 95px;
+  text-align: center;
+  transition-property: background, border-radius;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  width: 95px;
+} 
+/* .box:hover {
+  background: #ff7b29;
+  border-radius: 50%;
+}  */
+/* 
+button {
+  border: 0;
+  background: #0087cc;
+  border-radius: 4px;
+  box-shadow: 0 5px 0 #006599;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 12px 20px;
+  transition: all .1s linear;
+}
+button:active {
+  box-shadow: 0 2px 0 #006599;
+  transform: translateY(3px);
+} */
