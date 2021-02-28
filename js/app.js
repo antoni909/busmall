@@ -93,18 +93,16 @@ function clickManager(event){
     if(catalogueItemClicked === allCatalogItems[i].name)
       allCatalogItems[i].clicks++;
   }
+
   renderCatalogItems();
-  renderMyChart();
-  // store after results rendered
-  // step 1. stringify data
-  let stringifyAllCatalogItems = JSON.stringify(allCatalogItems);
-  console.log(stringifyAllCatalogItems);
-  // step 2. save to localStorage
-  localStorage.setItem('catalog-items',stringifyAllCatalogItems);
 
-  if(totalClicks === clicksAllowed)
+  if(totalClicks === clicksAllowed){
     myContainer.removeEventListener('click', clickManager);
+    renderMyChart();
 
+    let stringifyAllCatalogItems = JSON.stringify(allCatalogItems);
+    localStorage.setItem('catalog-items',stringifyAllCatalogItems);
+  }
 }
 
 // chart function
