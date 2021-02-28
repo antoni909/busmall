@@ -25,6 +25,7 @@ let retrievedAllCatalogItems = localStorage.getItem('catalog-items');
 // 3. use local storage so it doesnt break existing code
 if(retrievedAllCatalogItems){
 // 2. make data useable again by parsing it
+
   let parsedRetrievedAllCatalogItems = JSON.parse(retrievedAllCatalogItems);
   allCatalogItems = parsedRetrievedAllCatalogItems;
 
@@ -50,8 +51,6 @@ if(retrievedAllCatalogItems){
   new CatalogItem('water-can');
   new CatalogItem('wine-glass');
 }
-
-
 
 function getRandomIndex() {
   return Math.floor(Math.random() * (allCatalogItems.length));
@@ -151,39 +150,4 @@ function renderMyChart(){
 }
 
 myContainer.addEventListener('click', clickManager);
-
-// localStorage saves to computer C drive
-
-// Store:
-//  data object -> json.stringify -> to localStorage
-
-// Retrieve
-//  localStorage -> json.parse -> usable data
-
-//  setItem method
-//    localStorage.setItem("itemName", data)
-//      itemName --> key as a string
-//      data --> whatToStore? json stringified
-
-//  getItem method
-//    localStorage.getItem("itemName")
-//      itemName --> key as a string
-
-// Where can I find all my usable data?
-//     allCatalogueItems array has all object instances
-
-// to stringify:
-//  let allCatalogItems =  JSON.stringify(allCatalogItems);
-//  sets keys to strings and nums to nums and arr to string
-//  use jsonlint validator on google search
-//  JSON -> javascript object notation
-
-// set to local storage
-//  localStorage.setItem("keyname", stringifySomething);
-
-// get local storage
-// let retrievedData = localStorage.getItem("keyname");
-
-// let parsedData = JSON.parse(retrievedData);
-// it strips away its connection to constructor funciton and is "seen" as set of individual object litirals. This causes prototype methods to break. To fix, redesign constructor to reassign modified data
 
