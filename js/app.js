@@ -1,16 +1,19 @@
 'use strict';
 
+// global variables declared
 let totalClicks = 0;
 let clicksAllowed = 25;
 let allCatalogItems = [];
 let catalogueItemIndexArray = [];
 let uniqueIndexCount = 6;
 
+// use querySelector to retrieve elements from the DOM
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
 let myContainer = document.querySelector('section');
 
+// constructor function with default properties and params clearly defined
 function CatalogItem(name, extension = 'jpg'){
   this.name = name;
   this.src = `img/${name}.${extension}`;
@@ -19,16 +22,12 @@ function CatalogItem(name, extension = 'jpg'){
   allCatalogItems.push(this);
 }
 
-// Basically this data will be adding to itself from past useage
-// 1. get data from local storage using its key
+// Basically this data will be adding to itself from past usage
 let retrievedAllCatalogItems = localStorage.getItem('catalog-items');
-// 3. use local storage so it doesnt break existing code
-if(retrievedAllCatalogItems){
-// 2. make data useable again by parsing it
 
+if(retrievedAllCatalogItems){
   let parsedRetrievedAllCatalogItems = JSON.parse(retrievedAllCatalogItems);
   allCatalogItems = parsedRetrievedAllCatalogItems;
-
 } else {
   new CatalogItem('bag');
   new CatalogItem('banana');
@@ -52,11 +51,14 @@ if(retrievedAllCatalogItems){
   new CatalogItem('wine-glass');
 }
 
+// helper function
 function getRandomIndex() {
   return Math.floor(Math.random() * (allCatalogItems.length));
 }
 
+// render function
 function renderCatalogItems(){
+  // nested while logic from TA Ron
   while (catalogueItemIndexArray.length < uniqueIndexCount) {
     let randomNumber = getRandomIndex();
     while (!catalogueItemIndexArray.includes(randomNumber)){
@@ -82,6 +84,7 @@ function renderCatalogItems(){
 }
 renderCatalogItems();
 
+// call back function
 function clickManager(event){
   totalClicks++;
   let catalogueItemClicked = event.target.title;
@@ -104,6 +107,7 @@ function clickManager(event){
 
 }
 
+// chart function
 function renderMyChart(){
   let itemNames = [];
   let itemViews = [];
@@ -149,5 +153,6 @@ function renderMyChart(){
   let myChart = new Chart(ctx, chartObject);
 }
 
+// event listener
 myContainer.addEventListener('click', clickManager);
 
